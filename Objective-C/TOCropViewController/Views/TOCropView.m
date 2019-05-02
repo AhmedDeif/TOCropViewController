@@ -194,8 +194,9 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     
     //Translucency View
     if (NSClassFromString(@"UIVisualEffectView")) {
-        self.translucencyEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
-        self.translucencyView = [[UIVisualEffectView alloc] initWithEffect:self.translucencyEffect];
+        self.translucencyEffect = [UIBlurEffect effectWithStyle: UIBlurEffectStyleExtraLight];
+        self.translucencyView = [[UIVisualEffectView alloc] initWithEffect:nil];
+        self.translucencyView.backgroundColor = [UIColor colorWithWhite: 1.0 alpha:0.85];
         self.translucencyView.frame = self.bounds;
     }
     else {
@@ -764,7 +765,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
         self.translucencyView.alpha = visible ? 1.0f : 0.0f;
     }
     else {
-        [(UIVisualEffectView *)self.translucencyView setEffect:visible ? self.translucencyEffect : nil];
+        [(UIVisualEffectView *)self.translucencyView setEffect:visible ? nil : nil];
     }
 }
 
@@ -1131,7 +1132,7 @@ typedef NS_ENUM(NSInteger, TOCropViewOverlayEdge) {
     self.backgroundImageView.alpha = alpha;
     
     [UIView animateWithDuration:0.4f animations:^{
-        [self toggleTranslucencyViewVisible:!hidden];
+//        [self toggleTranslucencyViewVisible:!hidden];
         self.gridOverlayView.alpha = alpha;
     }];
 }
